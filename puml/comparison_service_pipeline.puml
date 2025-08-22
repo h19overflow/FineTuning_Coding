@@ -1,0 +1,51 @@
+@startuml Comparison_Service_Pipeline
+!theme plain
+title Three-Model Comparison Pipeline
+
+participant "Test Query" as TQ
+participant "Trained Model Client" as TMC
+participant "RAG System Client" as RSC
+participant "Base Model Client" as BMC
+participant "Vector Database" as VDB
+participant "Comparison Analyzer" as CA
+participant "Analysis Report" as AR
+
+TQ -> TMC: Same query
+TQ -> RSC: Same query  
+TQ -> BMC: Same query
+
+== Trained Model Path ==
+TMC -> TMC: Direct inference
+TMC -> CA: Response A
+
+== RAG System Path ==
+RSC -> VDB: Query embedding
+VDB -> RSC: Relevant chunks
+RSC -> RSC: Context + Base Gemma
+RSC -> CA: Response B
+
+== Base Model Path ==
+BMC -> BMC: Pure Gemma inference
+BMC -> CA: Response C
+
+note right of VDB
+  Vector Database:
+  - Semantic chunks from data/chunks/
+  - Nomic embeddings
+  - Similarity search
+end note
+
+CA -> CA: Compare responses
+CA -> CA: Score quality metrics
+CA -> CA: Analyze performance
+CA -> AR: Comprehensive comparison
+
+note right of AR
+  Analysis Output:
+  - Side-by-side comparison
+  - Quality scores
+  - Performance metrics
+  - Use case recommendations
+end note
+
+@enduml

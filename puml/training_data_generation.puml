@@ -1,0 +1,43 @@
+@startuml Training_Data_Generation
+!theme plain
+title Training Data Generation Pipeline
+
+participant "Chunk Files" as CF
+participant "Chunk Processor" as CP
+participant "QA Generation Agent" as QA
+participant "Gemini 2.5 Flash" as GM
+participant "Training Data Manager" as TM
+participant "Final Dataset" as FD
+
+CF -> CP: Load semantic chunks
+note right of CF
+  Input: data/chunks/
+  - JSON files with semantic chunks
+  - Metadata and source info
+end note
+
+CP -> CP: Parse chunk content
+CP -> QA: Chunk content + metadata
+
+QA -> QA: Create dynamic prompt
+QA -> GM: Generate Q&A examples
+note right of GM
+  - Pydantic AI structured output
+  - 5 examples per chunk
+  - Question/Answer pairs
+end note
+
+GM -> QA: Generated examples
+QA -> TM: Training examples batch
+
+TM -> TM: Validate examples
+TM -> TM: Save individual files
+TM -> FD: Merge all datasets
+
+note right of FD
+  Output: 
+  - data/training/*.json (individual)
+  - data/training_dataset.json (merged)
+end note
+
+@enduml

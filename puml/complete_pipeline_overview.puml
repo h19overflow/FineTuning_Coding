@@ -1,0 +1,58 @@
+@startuml Complete_Pipeline_Overview
+!theme plain
+title Complete Coding LLM Pipeline Overview
+
+' Data Sources at the top
+[Documentation Sources]
+note right of [Documentation Sources]
+  - LangGraph docs (600k tokens)
+  - Pydantic AI docs (100k tokens)
+  - Python LangChain docs (100k tokens)
+  - Pydantic docs (100k tokens)
+end note
+
+' Vertical flow for Data Preparation
+[Documentation Sources] --> [Data Fetcher]
+[Data Fetcher] --> [Semantic Chunker]
+[Semantic Chunker] --> [Chunk Files]
+[Chunk Files] --> [QA Generation Agent]
+[QA Generation Agent] --> [Training Dataset]
+
+note right of [Training Dataset]
+  - Q&A pairs from semantic chunks
+  - Structured training format
+  - Ready for fine-tuning
+end note
+
+' Model Training flows vertically
+[Training Dataset] --> [Data Loader]
+[Data Loader] --> [Model Trainer]
+[Model Trainer] --> [Trained Gemma Model]
+
+' Testing branch
+[Trained Gemma Model] --> [Model Evaluator]
+[Model Evaluator] --> [Performance Reports]
+
+' Comparison flows vertically with three parallel paths
+[Test Query] --> [Trained Model Client]
+[Test Query] --> [RAG System Client] 
+[Test Query] --> [Base Model Client]
+
+' RAG needs chunk data
+[Chunk Files] --> [RAG System Client]
+
+' All three models feed into analyzer
+[Trained Model Client] --> [Comparison Analyzer]
+[RAG System Client] --> [Comparison Analyzer]
+[Base Model Client] --> [Comparison Analyzer]
+
+[Comparison Analyzer] --> [Analysis Report]
+
+note bottom of [Analysis Report]
+  Final comparison:
+  - Trained vs RAG vs Base
+  - Quality & performance metrics
+  - Use case recommendations
+end note
+
+@enduml

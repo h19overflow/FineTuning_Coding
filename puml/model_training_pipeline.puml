@@ -1,0 +1,51 @@
+@startuml Model_Training_Pipeline
+!theme plain
+title Model Training Pipeline
+
+participant "Training Data" as TD
+participant "Data Loader" as DL
+participant "Model Trainer" as MT
+participant "Gemma Base Model" as GM
+participant "LoRA Adapters" as LA
+participant "Checkpoint Manager" as CM
+participant "Trained Model" as TM
+
+TD -> DL: Q&A training examples
+note right of TD
+  Input: data/training_dataset.json
+  - Question/Answer pairs
+  - Source attribution
+  - Metadata
+end note
+
+DL -> DL: Tokenize & format
+DL -> DL: Create batches
+DL -> MT: Training batches
+
+MT -> GM: Load base Gemma model
+GM -> LA: Attach LoRA adapters
+LA -> MT: Model ready for training
+
+note right of LA
+  LoRA Configuration:
+  - Parameter-efficient fine-tuning
+  - Memory optimization
+  - Faster training
+end note
+
+MT -> MT: Execute training loop
+MT -> MT: Calculate loss
+MT -> CM: Save checkpoints
+
+CM -> CM: Track best model
+CM -> TM: Export final model
+
+note right of TM
+  Output:
+  - Fine-tuned Gemma model
+  - LoRA adapter weights
+  - Training metrics
+  - Model checkpoints
+end note
+
+@enduml

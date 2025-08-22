@@ -1,0 +1,43 @@
+@startuml Model_Testing_Pipeline
+!theme plain
+title Model Testing & Evaluation Pipeline
+
+participant "Trained Model" as TM
+participant "Model Evaluator" as ME
+participant "Benchmark Runner" as BR
+participant "Test Datasets" as TS
+participant "Metrics Calculator" as MC
+participant "Performance Reports" as PR
+
+TM -> ME: Load trained model
+TS -> ME: Evaluation datasets
+
+ME -> ME: Initialize model for testing
+ME -> BR: Execute benchmarks
+
+BR -> BR: Code generation tests
+BR -> BR: Q&A accuracy tests
+BR -> BR: Performance benchmarks
+BR -> MC: Collect metrics
+
+note right of BR
+  Benchmark Types:
+  - Response quality (BLEU/ROUGE)
+  - Code correctness
+  - Inference speed
+  - Resource usage
+end note
+
+MC -> MC: Calculate scores
+MC -> MC: Statistical analysis
+MC -> PR: Generate reports
+
+note right of PR
+  Output:
+  - Quality metrics
+  - Performance benchmarks
+  - Comparison charts
+  - Test results summary
+end note
+
+@enduml

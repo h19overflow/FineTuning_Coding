@@ -1,0 +1,39 @@
+@startuml Data_Processing_Pipeline
+!theme plain
+title Data Processing Pipeline
+
+participant "Data Sources" as DS
+participant "Data Fetcher" as DF
+participant "Semantic Chunker" as SC
+participant "Nomic Embeddings" as NE
+participant "LangChain Splitter" as LC
+participant "Output JSON" as OJ
+
+DS -> DF: URLs (LangGraph, Pydantic AI, etc.)
+DF -> DF: Download & Extract Content
+DF -> SC: Raw Text Content
+
+SC -> NE: Initialize Embeddings Model
+NE -> SC: Embedding Model Ready
+SC -> LC: Create SemanticChunker
+LC -> SC: Chunker Initialized
+
+SC -> SC: Analyze Text Semantically
+SC -> SC: Find Natural Breakpoints
+SC -> OJ: Semantic Chunks (JSON)
+
+note right of SC
+  - 8,192 char max chunks
+  - 0.75 similarity threshold
+  - Fallback to character chunking
+end note
+
+note right of OJ
+  Output: data/chunks/
+  - langgraph_chunks.json
+  - pydantic_ai_chunks.json
+  - python_langchain_chunks.json
+  - pydantic_chunks.json
+end note
+
+@enduml
