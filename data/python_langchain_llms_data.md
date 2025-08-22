@@ -517,6 +517,19 @@ CODE:
 
 ----------------------------------------
 
+TITLE: Install Dependencies
+DESCRIPTION: Installs necessary libraries including langchain-core, langchain-openai, and langgraph for the examples.
+
+SOURCE: https://python.langchain.com/docs/how_to/convert_runnable_to_tool/
+
+LANGUAGE: bash
+CODE:
+```
+%%capture --no-stderr%pip install -U langchain-core langchain-openai langgraph
+```
+
+----------------------------------------
+
 TITLE: LangGraph Examples
 DESCRIPTION: Guided examples for getting started with LangGraph, demonstrating various use cases and functionalities.
 
@@ -535,19 +548,6 @@ CODE:
 # app = workflow.compile()
 # result = app.invoke(5)
 # print(result)
-```
-
-----------------------------------------
-
-TITLE: Install Dependencies
-DESCRIPTION: Installs necessary libraries including langchain-core, langchain-openai, and langgraph for the examples.
-
-SOURCE: https://python.langchain.com/docs/how_to/convert_runnable_to_tool/
-
-LANGUAGE: bash
-CODE:
-```
-%%capture --no-stderr%pip install -U langchain-core langchain-openai langgraph
 ```
 
 ----------------------------------------
@@ -1756,24 +1756,6 @@ CODE:
 
 ----------------------------------------
 
-TITLE: Getting Started with Yi Chat Models
-DESCRIPTION: This guide helps users begin with Yi chat models. It offers detailed documentation for integrating and utilizing Yi models effectively within the LangChain ecosystem.
-
-SOURCE: https://python.langchain.com/docs/integrations/chat/
-
-LANGUAGE: python
-CODE:
-```
-from langchain_community.chat_models import ChatYi
-
-# Example usage (assuming Yi API credentials are set)
-# chat = ChatYi()
-# response = chat.invoke("What are the capabilities of Yi models?")
-# print(response.content)
-```
-
-----------------------------------------
-
 TITLE: LangChain How-to Guides
 DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain, such as adding memory, using tools, and handling streaming responses.
 
@@ -1793,6 +1775,24 @@ LangChain How-to Guides:
   - Output Parsers: Parsing LLM responses into structured formats.
   - Routing: Routing between sub-chains.
   - Structured Output: Returning structured data from models.
+```
+
+----------------------------------------
+
+TITLE: Getting Started with Yi Chat Models
+DESCRIPTION: This guide helps users begin with Yi chat models. It offers detailed documentation for integrating and utilizing Yi models effectively within the LangChain ecosystem.
+
+SOURCE: https://python.langchain.com/docs/integrations/chat/
+
+LANGUAGE: python
+CODE:
+```
+from langchain_community.chat_models import ChatYi
+
+# Example usage (assuming Yi API credentials are set)
+# chat = ChatYi()
+# response = chat.invoke("What are the capabilities of Yi models?")
+# print(response.content)
 ```
 
 ----------------------------------------
@@ -2868,20 +2868,6 @@ CODE:
 
 ----------------------------------------
 
-TITLE: How to install LangChain packages
-DESCRIPTION: This guide provides instructions on how to install the necessary LangChain packages for your project. It covers different installation methods and common dependencies.
-
-SOURCE: https://python.langchain.com/docs/how_to/chatbots_memory/
-
-LANGUAGE: bash
-CODE:
-```
-pip install langchain
-
-```
-
-----------------------------------------
-
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -2927,6 +2913,20 @@ chain = prompt | model
 # query = "What is the weather in London?"
 # response = chain.invoke({"query": query})
 # print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: How to install LangChain packages
+DESCRIPTION: This guide provides instructions on how to install the necessary LangChain packages for your project. It covers different installation methods and common dependencies.
+
+SOURCE: https://python.langchain.com/docs/how_to/chatbots_memory/
+
+LANGUAGE: bash
+CODE:
+```
+pip install langchain
+
 ```
 
 ----------------------------------------
@@ -3510,6 +3510,19 @@ class Joke(BaseModel):
 
 ----------------------------------------
 
+TITLE: Install LangChain and OpenAI
+DESCRIPTION: Installs the necessary LangChain and OpenAI libraries, and prompts for the OpenAI API key if not already set.
+
+SOURCE: https://python.langchain.com/docs/how_to/few_shot_examples_chat/
+
+LANGUAGE: python
+CODE:
+```
+%pip install -qU langchain langchain-openai langchain-chromaimport osfrom getpass import getpassif "OPENAI_API_KEY" not in os.environ:    os.environ["OPENAI_API_KEY"] = getpass()
+```
+
+----------------------------------------
+
 TITLE: Improving Extraction with Reference Examples
 DESCRIPTION: This guide explains how to structure example inputs and outputs for extraction tasks in LangChain. It details incorporating these examples into prompts to enhance extraction performance.
 
@@ -3524,19 +3537,6 @@ CODE:
 #     {"input": "Text 2", "output": "Extracted Data 2"}
 # ]
 # prompt = f"Extract data from the following text: {text}\nExamples:\n{examples}"
-```
-
-----------------------------------------
-
-TITLE: Install LangChain and OpenAI
-DESCRIPTION: Installs the necessary LangChain and OpenAI libraries, and prompts for the OpenAI API key if not already set.
-
-SOURCE: https://python.langchain.com/docs/how_to/few_shot_examples_chat/
-
-LANGUAGE: python
-CODE:
-```
-%pip install -qU langchain langchain-openai langchain-chromaimport osfrom getpass import getpassif "OPENAI_API_KEY" not in os.environ:    os.environ["OPENAI_API_KEY"] = getpass()
 ```
 
 ----------------------------------------
@@ -4131,6 +4131,29 @@ print(result)
 
 ----------------------------------------
 
+TITLE: How to Install LangChain Packages
+DESCRIPTION: This guide provides instructions on how to install the necessary LangChain packages for your Python environment. It covers the use of pip for installing the core library and optional dependencies.
+
+SOURCE: https://python.langchain.com/docs/how_to/custom_tools/
+
+LANGUAGE: bash
+CODE:
+```
+# Install the core LangChain library
+pip install langchain
+
+# Install specific integrations (e.g., for OpenAI)
+pip install langchain-openai
+
+# Install for specific features like document loaders
+pip install langchain-community
+
+# Install all common integrations
+pip install "langchain[all]"
+```
+
+----------------------------------------
+
 TITLE: How to Use Few Shot Examples in Chat Models
 DESCRIPTION: This guide explains how to effectively use few-shot learning with LangChain chat models. By providing example interactions within the prompt, you can guide the model to produce desired outputs for specific tasks.
 
@@ -4155,29 +4178,6 @@ from langchain.schema import HumanMessage, SystemMessage, AIMessage
 
 # Send the messages including examples to the chat modelesponse = llm(messages)
 print(response.content)
-```
-
-----------------------------------------
-
-TITLE: How to Install LangChain Packages
-DESCRIPTION: This guide provides instructions on how to install the necessary LangChain packages for your Python environment. It covers the use of pip for installing the core library and optional dependencies.
-
-SOURCE: https://python.langchain.com/docs/how_to/custom_tools/
-
-LANGUAGE: bash
-CODE:
-```
-# Install the core LangChain library
-pip install langchain
-
-# Install specific integrations (e.g., for OpenAI)
-pip install langchain-openai
-
-# Install for specific features like document loaders
-pip install langchain-community
-
-# Install all common integrations
-pip install "langchain[all]"
 ```
 
 ----------------------------------------
@@ -5130,29 +5130,6 @@ How to summarize text through parallelization
 
 ----------------------------------------
 
-TITLE: LangChain Tutorials Overview
-DESCRIPTION: This section lists various tutorials available for LangChain, covering a wide range of applications from question answering to building agents and chatbots.
-
-SOURCE: https://python.langchain.com/docs/how_to/contextual_compression/
-
-LANGUAGE: markdown
-CODE:
-```
-*   [Build a Question Answering application over a Graph Database](/docs/tutorials/graph/)
-*   [Build a simple LLM application with chat models and prompt templates](/docs/tutorials/llm_chain/)
-*   [Build a Chatbot](/docs/tutorials/chatbot/)
-*   [Build a Retrieval Augmented Generation (RAG) App: Part 2](/docs/tutorials/qa_chat_history/)
-*   [Build an Extraction Chain](/docs/tutorials/extraction/)
-*   [Build an Agent](/docs/tutorials/agents/)
-*   [Tagging](/docs/tutorials/classification/)
-*   [Build a Retrieval Augmented Generation (RAG) App: Part 1](/docs/tutorials/rag/)
-*   [Build a semantic search engine](/docs/tutorials/retrievers/)
-*   [Build a Question/Answering system over SQL data](/docs/tutorials/sql_qa/)
-*   [Summarize Text](/docs/tutorials/summarization/)
-```
-
-----------------------------------------
-
 TITLE: How to Use Few Shot Examples in Chat Models
 DESCRIPTION: This guide demonstrates how to provide few-shot examples to LangChain chat models to improve their performance on specific tasks. By including example input-output pairs in the prompt, the model can better understand the desired behavior.
 
@@ -5182,25 +5159,24 @@ print(response.content)
 ----------------------------------------
 
 TITLE: LangChain Tutorials Overview
-DESCRIPTION: A collection of tutorials demonstrating how to build various applications using LangChain, from simple LLM interactions to complex agents and retrieval systems.
+DESCRIPTION: This section lists various tutorials available for LangChain, covering a wide range of applications from question answering to building agents and chatbots.
 
-SOURCE: https://python.langchain.com/docs/how_to/qa_per_user/
+SOURCE: https://python.langchain.com/docs/how_to/contextual_compression/
 
-LANGUAGE: APIDOC
+LANGUAGE: markdown
 CODE:
 ```
-Tutorials:
-  - Build a Question Answering application over a Graph Database
-  - Build a simple LLM application with chat models and prompt templates
-  - Build a Chatbot
-  - Build a Retrieval Augmented Generation (RAG) App: Part 2
-  - Build an Extraction Chain
-  - Build an Agent
-  - Tagging
-  - Build a Retrieval Augmented Generation (RAG) App: Part 1
-  - Build a semantic search engine
-  - Build a Question/Answering system over SQL data
-  - Summarize Text
+*   [Build a Question Answering application over a Graph Database](/docs/tutorials/graph/)
+*   [Build a simple LLM application with chat models and prompt templates](/docs/tutorials/llm_chain/)
+*   [Build a Chatbot](/docs/tutorials/chatbot/)
+*   [Build a Retrieval Augmented Generation (RAG) App: Part 2](/docs/tutorials/qa_chat_history/)
+*   [Build an Extraction Chain](/docs/tutorials/extraction/)
+*   [Build an Agent](/docs/tutorials/agents/)
+*   [Tagging](/docs/tutorials/classification/)
+*   [Build a Retrieval Augmented Generation (RAG) App: Part 1](/docs/tutorials/rag/)
+*   [Build a semantic search engine](/docs/tutorials/retrievers/)
+*   [Build a Question/Answering system over SQL data](/docs/tutorials/sql_qa/)
+*   [Summarize Text](/docs/tutorials/summarization/)
 ```
 
 ----------------------------------------
@@ -5233,6 +5209,30 @@ How to handle cases where no queries are generated
 How to route between sub-chains
 How to return structured data from a model
 How to summarize text through parallelization
+```
+
+----------------------------------------
+
+TITLE: LangChain Tutorials Overview
+DESCRIPTION: A collection of tutorials demonstrating how to build various applications using LangChain, from simple LLM interactions to complex agents and retrieval systems.
+
+SOURCE: https://python.langchain.com/docs/how_to/qa_per_user/
+
+LANGUAGE: APIDOC
+CODE:
+```
+Tutorials:
+  - Build a Question Answering application over a Graph Database
+  - Build a simple LLM application with chat models and prompt templates
+  - Build a Chatbot
+  - Build a Retrieval Augmented Generation (RAG) App: Part 2
+  - Build an Extraction Chain
+  - Build an Agent
+  - Tagging
+  - Build a Retrieval Augmented Generation (RAG) App: Part 1
+  - Build a semantic search engine
+  - Build a Question/Answering system over SQL data
+  - Summarize Text
 ```
 
 ----------------------------------------
@@ -5278,6 +5278,27 @@ CODE:
 
 ----------------------------------------
 
+TITLE: How to use few shot examples in chat models
+DESCRIPTION: This guide demonstrates how to provide few-shot examples to chat models in LangChain. This technique helps improve the model's performance on specific tasks by showing it examples.
+
+SOURCE: https://python.langchain.com/docs/how_to/chatbots_memory/
+
+LANGUAGE: python
+CODE:
+```
+from langchain.prompts import FewShotChatMessagePromptTemplate
+
+example_prompt = ChatPromptTemplate.from_messages([
+    ("human", "{input}"),
+    ("ai", "{output}")
+])
+
+few_shot_prompt = FewShotChatMessagePromptTemplate(example_prompt=example_prompt, examples=examples)
+
+```
+
+----------------------------------------
+
 TITLE: LangChain How-to Guides
 DESCRIPTION: Practical guides on implementing specific functionalities within LangChain, such as adding memory to chatbots, using vectorstores as retrievers, and handling tool/function calling.
 
@@ -5307,27 +5328,6 @@ How-to guides:
   - How to route between sub-chains
   - How to return structured data from a model
   - How to summarize text through parallelization
-```
-
-----------------------------------------
-
-TITLE: How to use few shot examples in chat models
-DESCRIPTION: This guide demonstrates how to provide few-shot examples to chat models in LangChain. This technique helps improve the model's performance on specific tasks by showing it examples.
-
-SOURCE: https://python.langchain.com/docs/how_to/chatbots_memory/
-
-LANGUAGE: python
-CODE:
-```
-from langchain.prompts import FewShotChatMessagePromptTemplate
-
-example_prompt = ChatPromptTemplate.from_messages([
-    ("human", "{input}"),
-    ("ai", "{output}")
-])
-
-few_shot_prompt = FewShotChatMessagePromptTemplate(example_prompt=example_prompt, examples=examples)
-
 ```
 
 ----------------------------------------
@@ -6021,6 +6021,55 @@ How-to guides:
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
+SOURCE: https://python.langchain.com/docs/how_to/example_selectors_similarity/
+
+LANGUAGE: python
+CODE:
+```
+# Example of few-shot prompting with tool calling:
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_openai import ChatOpenAI
+from langchain_core.utils.function_calling import convert_to_openai_tool
+
+# Define a tool
+def get_weather(city: str) -> str:
+    """Get the weather in a given city."""
+    return f"The weather in {city} is sunny."
+
+# Convert the tool to a format compatible with OpenAI's function calling
+weather_tool = convert_to_openai_tool(get_weather)
+
+# Create a prompt with few-shot examples
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    # Few-shot example 1
+    HumanMessage("What's the weather like in San Francisco?"),
+    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
+    # Few-shot example 2 (optional)
+    # HumanMessage("Tell me about Paris."),
+    # AIMessage("", tool_calls=[...])
+    # The actual user query
+    ("human", "{query}")
+])
+
+# Initialize the model with tool calling capabilities
+model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
+
+# Create the chain
+chain = prompt | model
+
+# Example query
+# query = "What is the weather in London?"
+# response = chain.invoke({"query": query})
+# print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: Use Few-Shot Prompting with Tool Calling
+DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
+
 SOURCE: https://python.langchain.com/docs/how_to/callbacks_constructor/
 
 LANGUAGE: python
@@ -6093,55 +6142,6 @@ Guides cover:
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/example_selectors_similarity/
-
-LANGUAGE: python
-CODE:
-```
-# Example of few-shot prompting with tool calling:
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langchain_openai import ChatOpenAI
-from langchain_core.utils.function_calling import convert_to_openai_tool
-
-# Define a tool
-def get_weather(city: str) -> str:
-    """Get the weather in a given city."""
-    return f"The weather in {city} is sunny."
-
-# Convert the tool to a format compatible with OpenAI's function calling
-weather_tool = convert_to_openai_tool(get_weather)
-
-# Create a prompt with few-shot examples
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant. Use the available tools."),
-    # Few-shot example 1
-    HumanMessage("What's the weather like in San Francisco?"),
-    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
-    # Few-shot example 2 (optional)
-    # HumanMessage("Tell me about Paris."),
-    # AIMessage("", tool_calls=[...])
-    # The actual user query
-    ("human", "{query}")
-])
-
-# Initialize the model with tool calling capabilities
-model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
-
-# Create the chain
-chain = prompt | model
-
-# Example query
-# query = "What is the weather in London?"
-# response = chain.invoke({"query": query})
-# print(response.tool_calls)
-```
-
-----------------------------------------
-
-TITLE: Use Few-Shot Prompting with Tool Calling
-DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
-
 SOURCE: https://python.langchain.com/docs/how_to/migrate_agent/
 
 LANGUAGE: python
@@ -6188,6 +6188,37 @@ chain = prompt | model
 
 ----------------------------------------
 
+TITLE: LangChain How-to Guides Overview
+DESCRIPTION: This section provides guides on how to implement specific features and functionalities within LangChain applications. Topics include using tools, memory, vectorstores, streaming, and more.
+
+SOURCE: https://python.langchain.com/docs/how_to/pydantic_compatibility/
+
+LANGUAGE: markdown
+CODE:
+```
+*   [How to use tools in a chain](/docs/how_to/tools_chain/)
+*   [How to use a vectorstore as a retriever](/docs/how_to/vectorstore_retriever/)
+*   [How to add memory to chatbots](/docs/how_to/chatbots_memory/)
+*   [How to use example selectors](/docs/how_to/example_selectors/)
+*   [How to add a semantic layer over graph database](/docs/how_to/graph_semantic/)
+*   [How to invoke runnables in parallel](/docs/how_to/parallel/)
+*   [How to stream chat model responses](/docs/how_to/chat_streaming/)
+*   [How to add default invocation args to a Runnable](/docs/how_to/binding/)
+*   [How to add retrieval to chatbots](/docs/how_to/chatbots_retrieval/)
+*   [How to use few shot examples in chat models](/docs/how_to/few_shot_examples_chat/)
+*   [How to do tool/function calling](/docs/how_to/function_calling/)
+*   [How to install LangChain packages](/docs/how_to/installation/)
+*   [How to add examples to the prompt for query analysis](/docs/how_to/query_few_shot/)
+*   [How to use few shot examples](/docs/how_to/few_shot_examples/)
+*   [How to run custom functions](/docs/how_to/functions/)
+*   [How to use output parsers to parse an LLM response into structured format](/docs/how_to/output_parser_structured/)
+*   [How to handle cases where no queries are generated](/docs/how_to/query_no_queries/)
+*   [How to route between sub-chains](/docs/how_to/routing/)
+*   [How to return structured data from a model](/docs/how_to/structured_output/)
+```
+
+----------------------------------------
+
 TITLE: LangChain How-to Guides
 DESCRIPTION: This section provides practical guides on implementing specific features within LangChain, such as using tools, vectorstores, memory, prompt selectors, parallel execution, streaming, and function calling.
 
@@ -6230,37 +6261,6 @@ CODE:
 from langchain_core.prompts import PromptTemplate
 
 example_prompt = PromptTemplate.from_template("Question: {question}\n{answer}")
-```
-
-----------------------------------------
-
-TITLE: LangChain How-to Guides Overview
-DESCRIPTION: This section provides guides on how to implement specific features and functionalities within LangChain applications. Topics include using tools, memory, vectorstores, streaming, and more.
-
-SOURCE: https://python.langchain.com/docs/how_to/pydantic_compatibility/
-
-LANGUAGE: markdown
-CODE:
-```
-*   [How to use tools in a chain](/docs/how_to/tools_chain/)
-*   [How to use a vectorstore as a retriever](/docs/how_to/vectorstore_retriever/)
-*   [How to add memory to chatbots](/docs/how_to/chatbots_memory/)
-*   [How to use example selectors](/docs/how_to/example_selectors/)
-*   [How to add a semantic layer over graph database](/docs/how_to/graph_semantic/)
-*   [How to invoke runnables in parallel](/docs/how_to/parallel/)
-*   [How to stream chat model responses](/docs/how_to/chat_streaming/)
-*   [How to add default invocation args to a Runnable](/docs/how_to/binding/)
-*   [How to add retrieval to chatbots](/docs/how_to/chatbots_retrieval/)
-*   [How to use few shot examples in chat models](/docs/how_to/few_shot_examples_chat/)
-*   [How to do tool/function calling](/docs/how_to/function_calling/)
-*   [How to install LangChain packages](/docs/how_to/installation/)
-*   [How to add examples to the prompt for query analysis](/docs/how_to/query_few_shot/)
-*   [How to use few shot examples](/docs/how_to/few_shot_examples/)
-*   [How to run custom functions](/docs/how_to/functions/)
-*   [How to use output parsers to parse an LLM response into structured format](/docs/how_to/output_parser_structured/)
-*   [How to handle cases where no queries are generated](/docs/how_to/query_no_queries/)
-*   [How to route between sub-chains](/docs/how_to/routing/)
-*   [How to return structured data from a model](/docs/how_to/structured_output/)
 ```
 
 ----------------------------------------
@@ -6409,22 +6409,6 @@ How-to Guides:
 
 ----------------------------------------
 
-TITLE: LangChain How-to Guides
-DESCRIPTION: Practical guides for common LangChain tasks, including how to trim messages and how to create and query vector stores.
-
-SOURCE: https://python.langchain.com/docs/how_to/passthrough/
-
-LANGUAGE: python
-CODE:
-```
-## How-to Guide Topics:
-- How to trim messages
-- How to create and query vector stores
-- How to pass through arguments from one step to the next
-```
-
-----------------------------------------
-
 TITLE: openGauss VectorStore Integration
 DESCRIPTION: This notebook covers how to get started with the openGauss VectorStore.
 
@@ -6438,6 +6422,22 @@ from langchain_community.vectorstores import OpenGaussVectorStore
 # Example usage (assuming openGauss connection)
 # vector_store = OpenGaussVectorStore(table_name="my_table")
 # results = vector_store.similarity_search("query text")
+```
+
+----------------------------------------
+
+TITLE: LangChain How-to Guides
+DESCRIPTION: Practical guides for common LangChain tasks, including how to trim messages and how to create and query vector stores.
+
+SOURCE: https://python.langchain.com/docs/how_to/passthrough/
+
+LANGUAGE: python
+CODE:
+```
+## How-to Guide Topics:
+- How to trim messages
+- How to create and query vector stores
+- How to pass through arguments from one step to the next
 ```
 
 ----------------------------------------
@@ -6687,6 +6687,39 @@ chain = prompt | model
 TITLE: LangChain How-to Guides
 DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain.
 
+SOURCE: https://python.langchain.com/docs/versions/migrating_chains/
+
+LANGUAGE: APIDOC
+CODE:
+```
+How-to guides:
+  - How to use tools in a chain: /docs/how_to/tools_chain/
+  - How to use a vectorstore as a retriever: /docs/how_to/vectorstore_retriever/
+  - How to add memory to chatbots: /docs/how_to/chatbots_memory/
+  - How to use example selectors: /docs/how_to/example_selectors/
+  - How to add a semantic layer over graph database: /docs/how_to/graph_semantic/
+  - How to invoke runnables in parallel: /docs/how_to/parallel/
+  - How to stream chat model responses: /docs/how_to/chat_streaming/
+  - How to add default invocation args to a Runnable: /docs/how_to/binding/
+  - How to add retrieval to chatbots: /docs/how_to/chatbots_retrieval/
+  - How to use few shot examples in chat models: /docs/how_to/few_shot_examples_chat/
+  - How to do tool/function calling: /docs/how_to/function_calling/
+  - How to install LangChain packages: /docs/how_to/installation/
+  - How to add examples to the prompt for query analysis: /docs/how_to/query_few_shot/
+  - How to use few shot examples: /docs/how_to/few_shot_examples/
+  - How to run custom functions: /docs/how_to/functions/
+  - How to use output parsers to parse an LLM response into structured format: /docs/how_to/output_parser_structured/
+  - How to handle cases where no queries are generated: /docs/how_to/query_no_queries/
+  - How to route between sub-chains: /docs/how_to/routing/
+  - How to return structured data from a model: /docs/how_to/structured_output/
+  - How to summarize text through parallelization: /docs/how_to/summarize_map_reduce/
+```
+
+----------------------------------------
+
+TITLE: LangChain How-to Guides
+DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain.
+
 SOURCE: https://python.langchain.com/docs/how_to/multimodal_inputs/
 
 LANGUAGE: APIDOC
@@ -6750,39 +6783,6 @@ How-to Guides:
   - How to return structured data from a model
     Description: Techniques for obtaining structured output from language models.
     Path: /docs/how_to/structured_output/
-```
-
-----------------------------------------
-
-TITLE: LangChain How-to Guides
-DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain.
-
-SOURCE: https://python.langchain.com/docs/versions/migrating_chains/
-
-LANGUAGE: APIDOC
-CODE:
-```
-How-to guides:
-  - How to use tools in a chain: /docs/how_to/tools_chain/
-  - How to use a vectorstore as a retriever: /docs/how_to/vectorstore_retriever/
-  - How to add memory to chatbots: /docs/how_to/chatbots_memory/
-  - How to use example selectors: /docs/how_to/example_selectors/
-  - How to add a semantic layer over graph database: /docs/how_to/graph_semantic/
-  - How to invoke runnables in parallel: /docs/how_to/parallel/
-  - How to stream chat model responses: /docs/how_to/chat_streaming/
-  - How to add default invocation args to a Runnable: /docs/how_to/binding/
-  - How to add retrieval to chatbots: /docs/how_to/chatbots_retrieval/
-  - How to use few shot examples in chat models: /docs/how_to/few_shot_examples_chat/
-  - How to do tool/function calling: /docs/how_to/function_calling/
-  - How to install LangChain packages: /docs/how_to/installation/
-  - How to add examples to the prompt for query analysis: /docs/how_to/query_few_shot/
-  - How to use few shot examples: /docs/how_to/few_shot_examples/
-  - How to run custom functions: /docs/how_to/functions/
-  - How to use output parsers to parse an LLM response into structured format: /docs/how_to/output_parser_structured/
-  - How to handle cases where no queries are generated: /docs/how_to/query_no_queries/
-  - How to route between sub-chains: /docs/how_to/routing/
-  - How to return structured data from a model: /docs/how_to/structured_output/
-  - How to summarize text through parallelization: /docs/how_to/summarize_map_reduce/
 ```
 
 ----------------------------------------
@@ -6881,19 +6881,6 @@ How to return structured data from a model
 
 ----------------------------------------
 
-TITLE: Set up threads
-DESCRIPTION: Instructions on how to properly set up and trace operations involving threads within an application using LangSmith.
-
-SOURCE: https://docs.smith.langchain.com/how_to_guides/tracing/
-
-LANGUAGE: APIDOC
-CODE:
-```
-/observability/how_to_guides/threads
-```
-
-----------------------------------------
-
 TITLE: Setup for Tool-Calling Models
 DESCRIPTION: Provides guidance on setting up local LLMs, recommending a model fine-tuned for tool-calling, such as Hermes-2-Pro-Llama-3-8B-GGUF from NousResearch. It also links to further guides on running LLMs locally and using them with RAG.
 
@@ -6909,41 +6896,6 @@ Recommended Model: Hermes-2-Pro-Llama-3-8B-GGUF (NousResearch)
 Further Guides:
 - Run LLMs locally: https://python.langchain.com/v0.1/docs/guides/development/local_llms/
 - Using local models with RAG: https://python.langchain.com/v0.1/docs/use_cases/question_answering/local_retrieval_qa/
-```
-
-----------------------------------------
-
-TITLE: LangChain How-to Guides
-DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain, such as adding memory, using tools, and handling streaming responses.
-
-SOURCE: https://python.langchain.com/docs/how_to/document_loader_html/
-
-LANGUAGE: APIDOC
-CODE:
-```
-How-to guides:
-  /docs/how_to/
-
-  - How to use tools in a chain: /docs/how_to/tools_chain/
-  - How to use a vectorstore as a retriever: /docs/how_to/vectorstore_retriever/
-  - How to add memory to chatbots: /docs/how_to/chatbots_memory/
-  - How to use example selectors: /docs/how_to/example_selectors/
-  - How to add a semantic layer over graph database: /docs/how_to/graph_semantic/
-  - How to invoke runnables in parallel: /docs/how_to/parallel/
-  - How to stream chat model responses: /docs/how_to/chat_streaming/
-  - How to add default invocation args to a Runnable: /docs/how_to/binding/
-  - How to add retrieval to chatbots: /docs/how_to/chatbots_retrieval/
-  - How to use few shot examples in chat models: /docs/how_to/few_shot_examples_chat/
-  - How to do tool/function calling: /docs/how_to/function_calling/
-  - How to install LangChain packages: /docs/how_to/installation/
-  - How to add examples to the prompt for query analysis: /docs/how_to/query_few_shot/
-  - How to use few shot examples: /docs/how_to/few_shot_examples/
-  - How to run custom functions: /docs/how_to/functions/
-  - How to use output parsers to parse an LLM response into structured format: /docs/how_to/output_parser_structured/
-  - How to handle cases where no queries are generated: /docs/how_to/query_no_queries/
-  - How to route between sub-chains: /docs/how_to/routing/
-  - How to return structured data from a model: /docs/how_to/structured_output/
-  - How to summarize text through parallelization: /docs/how_to/summarize_map_reduce/
 ```
 
 ----------------------------------------
@@ -6996,6 +6948,54 @@ How to return structured data from a model:
   /docs/how_to/structured_output/
 How to summarize text through parallelization:
   /docs/how_to/summarize_map_reduce/
+```
+
+----------------------------------------
+
+TITLE: LangChain How-to Guides
+DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain, such as adding memory, using tools, and handling streaming responses.
+
+SOURCE: https://python.langchain.com/docs/how_to/document_loader_html/
+
+LANGUAGE: APIDOC
+CODE:
+```
+How-to guides:
+  /docs/how_to/
+
+  - How to use tools in a chain: /docs/how_to/tools_chain/
+  - How to use a vectorstore as a retriever: /docs/how_to/vectorstore_retriever/
+  - How to add memory to chatbots: /docs/how_to/chatbots_memory/
+  - How to use example selectors: /docs/how_to/example_selectors/
+  - How to add a semantic layer over graph database: /docs/how_to/graph_semantic/
+  - How to invoke runnables in parallel: /docs/how_to/parallel/
+  - How to stream chat model responses: /docs/how_to/chat_streaming/
+  - How to add default invocation args to a Runnable: /docs/how_to/binding/
+  - How to add retrieval to chatbots: /docs/how_to/chatbots_retrieval/
+  - How to use few shot examples in chat models: /docs/how_to/few_shot_examples_chat/
+  - How to do tool/function calling: /docs/how_to/function_calling/
+  - How to install LangChain packages: /docs/how_to/installation/
+  - How to add examples to the prompt for query analysis: /docs/how_to/query_few_shot/
+  - How to use few shot examples: /docs/how_to/few_shot_examples/
+  - How to run custom functions: /docs/how_to/functions/
+  - How to use output parsers to parse an LLM response into structured format: /docs/how_to/output_parser_structured/
+  - How to handle cases where no queries are generated: /docs/how_to/query_no_queries/
+  - How to route between sub-chains: /docs/how_to/routing/
+  - How to return structured data from a model: /docs/how_to/structured_output/
+  - How to summarize text through parallelization: /docs/how_to/summarize_map_reduce/
+```
+
+----------------------------------------
+
+TITLE: Set up threads
+DESCRIPTION: Instructions on how to properly set up and trace operations involving threads within an application using LangSmith.
+
+SOURCE: https://docs.smith.langchain.com/how_to_guides/tracing/
+
+LANGUAGE: APIDOC
+CODE:
+```
+/observability/how_to_guides/threads
 ```
 
 ----------------------------------------
@@ -7055,6 +7055,50 @@ How to summarize text through parallelization
 
 ----------------------------------------
 
+TITLE: How to use few shot examples in chat models
+DESCRIPTION: Demonstrates how to incorporate few-shot examples when interacting with chat models. This is useful for guiding the model's responses and improving accuracy for specific tasks.
+
+SOURCE: https://python.langchain.com/docs/how_to/few_shot_examples/
+
+LANGUAGE: python
+CODE:
+```
+from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
+
+# Example messages for few-shot learning
+example_messages = [
+    {'role': 'user', 'content': 'What is the capital of France?'},
+    {'role': 'assistant', 'content': 'Paris'},
+    {'role': 'user', 'content': 'What is the capital of Germany?'},
+    {'role': 'assistant', 'content': 'Berlin'}
+]
+
+# Create a FewShotChatMessagePromptTemplate
+example_prompt = FewShotChatMessagePromptTemplate.from_examples(
+    examples=example_messages,
+    input_variables=["input"],
+    example_separator="\n---",
+    suffix="User: {input}\nAssistant:",
+    input_type="human"
+)
+
+# Create a ChatPromptTemplate with the few-shot examples
+chat_prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant."),
+    example_prompt
+])
+
+# You can then format this prompt with new user input
+formatted_prompt = chat_prompt.format_messages(
+    input="What is the capital of Spain?"
+)
+
+# The formatted_prompt can be passed to a chat model
+# print(formatted_prompt)
+```
+
+----------------------------------------
+
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -7104,50 +7148,6 @@ chain = prompt | model
 
 ----------------------------------------
 
-TITLE: How to use few shot examples in chat models
-DESCRIPTION: Demonstrates how to incorporate few-shot examples when interacting with chat models. This is useful for guiding the model's responses and improving accuracy for specific tasks.
-
-SOURCE: https://python.langchain.com/docs/how_to/few_shot_examples/
-
-LANGUAGE: python
-CODE:
-```
-from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
-
-# Example messages for few-shot learning
-example_messages = [
-    {'role': 'user', 'content': 'What is the capital of France?'},
-    {'role': 'assistant', 'content': 'Paris'},
-    {'role': 'user', 'content': 'What is the capital of Germany?'},
-    {'role': 'assistant', 'content': 'Berlin'}
-]
-
-# Create a FewShotChatMessagePromptTemplate
-example_prompt = FewShotChatMessagePromptTemplate.from_examples(
-    examples=example_messages,
-    input_variables=["input"],
-    example_separator="\n---",
-    suffix="User: {input}\nAssistant:",
-    input_type="human"
-)
-
-# Create a ChatPromptTemplate with the few-shot examples
-chat_prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant."),
-    example_prompt
-])
-
-# You can then format this prompt with new user input
-formatted_prompt = chat_prompt.format_messages(
-    input="What is the capital of Spain?"
-)
-
-# The formatted_prompt can be passed to a chat model
-# print(formatted_prompt)
-```
-
-----------------------------------------
-
 TITLE: LangChain How-to Guides Overview
 DESCRIPTION: This section provides practical guides on implementing specific features and functionalities within LangChain. It covers topics such as using tools, memory, vectorstores, parallel execution, streaming, and more.
 
@@ -7183,7 +7183,7 @@ How to summarize text through parallelization
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/sql_query_checking/
+SOURCE: https://python.langchain.com/docs/how_to/serialization/
 
 LANGUAGE: python
 CODE:
@@ -7232,7 +7232,7 @@ chain = prompt | model
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/serialization/
+SOURCE: https://python.langchain.com/docs/how_to/sql_query_checking/
 
 LANGUAGE: python
 CODE:
@@ -7422,30 +7422,6 @@ How-to guides:
 
 ----------------------------------------
 
-TITLE: LangChain Tutorials
-DESCRIPTION: A collection of tutorials demonstrating how to build various LLM applications with LangChain, including QA, chatbots, RAG, and agents.
-
-SOURCE: https://python.langchain.com/docs/how_to/example_selectors_similarity/
-
-LANGUAGE: APIDOC
-CODE:
-```
-Tutorials:
-  - Build a Question Answering application over a Graph Database: /docs/tutorials/graph/
-  - Build a simple LLM application with chat models and prompt templates: /docs/tutorials/llm_chain/
-  - Build a Chatbot: /docs/tutorials/chatbot/
-  - Build a Retrieval Augmented Generation (RAG) App: Part 2: /docs/tutorials/qa_chat_history/
-  - Build an Extraction Chain: /docs/tutorials/extraction/
-  - Build an Agent: /docs/tutorials/agents/
-  - Tagging: /docs/tutorials/classification/
-  - Build a Retrieval Augmented Generation (RAG) App: Part 1: /docs/tutorials/rag/
-  - Build a semantic search engine: /docs/tutorials/retrievers/
-  - Build a Question/Answering system over SQL data: /docs/tutorials/sql_qa/
-  - Summarize Text: /docs/tutorials/summarization/
-```
-
-----------------------------------------
-
 TITLE: LangChain How-to Guides
 DESCRIPTION: Practical guides on implementing specific features and functionalities within LangChain, such as using tools, memory, output parsers, and parallel execution.
 
@@ -7475,6 +7451,30 @@ How-to guides:
   How to route between sub-chains: /docs/how_to/routing/
   How to return structured data from a model: /docs/how_to/structured_output/
   How to summarize text through parallelization: /docs/how_to/summarize_map_reduce/
+```
+
+----------------------------------------
+
+TITLE: LangChain Tutorials
+DESCRIPTION: A collection of tutorials demonstrating how to build various LLM applications with LangChain, including QA, chatbots, RAG, and agents.
+
+SOURCE: https://python.langchain.com/docs/how_to/example_selectors_similarity/
+
+LANGUAGE: APIDOC
+CODE:
+```
+Tutorials:
+  - Build a Question Answering application over a Graph Database: /docs/tutorials/graph/
+  - Build a simple LLM application with chat models and prompt templates: /docs/tutorials/llm_chain/
+  - Build a Chatbot: /docs/tutorials/chatbot/
+  - Build a Retrieval Augmented Generation (RAG) App: Part 2: /docs/tutorials/qa_chat_history/
+  - Build an Extraction Chain: /docs/tutorials/extraction/
+  - Build an Agent: /docs/tutorials/agents/
+  - Tagging: /docs/tutorials/classification/
+  - Build a Retrieval Augmented Generation (RAG) App: Part 1: /docs/tutorials/rag/
+  - Build a semantic search engine: /docs/tutorials/retrievers/
+  - Build a Question/Answering system over SQL data: /docs/tutorials/sql_qa/
+  - Summarize Text: /docs/tutorials/summarization/
 ```
 
 ----------------------------------------
@@ -7751,26 +7751,6 @@ How to return structured data from a model
 
 ----------------------------------------
 
-TITLE: Extraction Techniques
-DESCRIPTION: Guides on using reference examples and handling long text for extraction, as well as performing extraction using only prompting.
-
-SOURCE: https://python.langchain.com/docs/how_to/qa_citations/
-
-LANGUAGE: python
-CODE:
-```
-# How to use reference examples when doing extraction
-# /docs/how_to/extraction_examples/
-
-# How to handle long text when doing extraction
-# /docs/how_to/extraction_long_text/
-
-# How to use prompting alone (no tool calling) to do extraction
-# /docs/how_to/extraction_parse/
-```
-
-----------------------------------------
-
 TITLE: Running LangChain Models Locally
 DESCRIPTION: Instructions on how to configure and run LangChain models using local LLM providers.
 
@@ -7790,6 +7770,26 @@ llm = Ollama(model="llama2")
 # print(llm.invoke("Why is the sky blue?"))
 
 # Other local LLM integrations include HuggingFaceHub, GPT4All, etc.
+```
+
+----------------------------------------
+
+TITLE: Extraction Techniques
+DESCRIPTION: Guides on using reference examples and handling long text for extraction, as well as performing extraction using only prompting.
+
+SOURCE: https://python.langchain.com/docs/how_to/qa_citations/
+
+LANGUAGE: python
+CODE:
+```
+# How to use reference examples when doing extraction
+# /docs/how_to/extraction_examples/
+
+# How to handle long text when doing extraction
+# /docs/how_to/extraction_long_text/
+
+# How to use prompting alone (no tool calling) to do extraction
+# /docs/how_to/extraction_parse/
 ```
 
 ----------------------------------------
@@ -8139,6 +8139,37 @@ prompt = ChatPromptTemplate.from_messages([
 
 ----------------------------------------
 
+TITLE: LangChain Tutorials Overview
+DESCRIPTION: A collection of tutorials demonstrating how to build various applications using LangChain, from simple LLM applications to complex agents and RAG systems.
+
+SOURCE: https://python.langchain.com/docs/how_to/output_parser_string/
+
+LANGUAGE: APIDOC
+CODE:
+```
+Tutorials:
+  /docs/tutorials/
+
+This section offers practical guides for building different types of applications with LangChain. Each tutorial focuses on a specific use case and provides step-by-step instructions and code examples.
+
+Featured Tutorials:
+- Build a Question Answering application over a Graph Database
+- Build a simple LLM application with chat models and prompt templates
+- Build a Chatbot
+- Build a Retrieval Augmented Generation (RAG) App: Part 2
+- Build an Extraction Chain
+- Build an Agent
+- Tagging
+- Build a Retrieval Augmented Generation (RAG) App: Part 1
+- Build a semantic search engine
+- Build a Question/Answering system over SQL data
+- Summarize Text
+
+These tutorials are designed to help users quickly get started with LangChain and explore its capabilities.
+```
+
+----------------------------------------
+
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -8242,37 +8273,6 @@ examples = [
 # response = llm.invoke(formatted_prompt)
 # print(response)
 
-```
-
-----------------------------------------
-
-TITLE: LangChain Tutorials Overview
-DESCRIPTION: A collection of tutorials demonstrating how to build various applications using LangChain, from simple LLM applications to complex agents and RAG systems.
-
-SOURCE: https://python.langchain.com/docs/how_to/output_parser_string/
-
-LANGUAGE: APIDOC
-CODE:
-```
-Tutorials:
-  /docs/tutorials/
-
-This section offers practical guides for building different types of applications with LangChain. Each tutorial focuses on a specific use case and provides step-by-step instructions and code examples.
-
-Featured Tutorials:
-- Build a Question Answering application over a Graph Database
-- Build a simple LLM application with chat models and prompt templates
-- Build a Chatbot
-- Build a Retrieval Augmented Generation (RAG) App: Part 2
-- Build an Extraction Chain
-- Build an Agent
-- Tagging
-- Build a Retrieval Augmented Generation (RAG) App: Part 1
-- Build a semantic search engine
-- Build a Question/Answering system over SQL data
-- Summarize Text
-
-These tutorials are designed to help users quickly get started with LangChain and explore its capabilities.
 ```
 
 ----------------------------------------
@@ -9141,6 +9141,26 @@ CODE:
 
 ----------------------------------------
 
+TITLE: Extraction Techniques
+DESCRIPTION: Guides on using reference examples and handling long text for extraction, as well as performing extraction using only prompting.
+
+SOURCE: https://python.langchain.com/docs/how_to/callbacks_attach/
+
+LANGUAGE: python
+CODE:
+```
+# How to use reference examples when doing extraction
+# /docs/how_to/extraction_examples/
+
+# How to handle long text when doing extraction
+# /docs/how_to/extraction_long_text/
+
+# How to use prompting alone (no tool calling) to do extraction
+# /docs/how_to/extraction_parse/
+```
+
+----------------------------------------
+
 TITLE: LangChain How-to Guides
 DESCRIPTION: Guides that explain how to perform specific tasks and implement features within LangChain.
 
@@ -9169,75 +9189,6 @@ How-to guides:
   - How to handle cases where no queries are generated: /docs/how_to/query_no_queries/
   - How to route between sub-chains: /docs/how_to/routing/
   - How to return structured data from a model: /docs/how_to/structured_output/
-```
-
-----------------------------------------
-
-TITLE: Extraction Techniques
-DESCRIPTION: Guides on using reference examples and handling long text for extraction, as well as performing extraction using only prompting.
-
-SOURCE: https://python.langchain.com/docs/how_to/callbacks_attach/
-
-LANGUAGE: python
-CODE:
-```
-# How to use reference examples when doing extraction
-# /docs/how_to/extraction_examples/
-
-# How to handle long text when doing extraction
-# /docs/how_to/extraction_long_text/
-
-# How to use prompting alone (no tool calling) to do extraction
-# /docs/how_to/extraction_parse/
-```
-
-----------------------------------------
-
-TITLE: Use Few-Shot Prompting with Tool Calling
-DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
-
-SOURCE: https://python.langchain.com/docs/how_to/MultiQueryRetriever/
-
-LANGUAGE: python
-CODE:
-```
-# Example of few-shot prompting with tool calling:
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langchain_openai import ChatOpenAI
-from langchain_core.utils.function_calling import convert_to_openai_tool
-
-# Define a tool
-def get_weather(city: str) -> str:
-    """Get the weather in a given city."""
-    return f"The weather in {city} is sunny."
-
-# Convert the tool to a format compatible with OpenAI's function calling
-weather_tool = convert_to_openai_tool(get_weather)
-
-# Create a prompt with few-shot examples
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant. Use the available tools."),
-    # Few-shot example 1
-    HumanMessage("What's the weather like in San Francisco?"),
-    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
-    # Few-shot example 2 (optional)
-    # HumanMessage("Tell me about Paris."),
-    # AIMessage("", tool_calls=[...])
-    # The actual user query
-    ("human", "{query}")
-])
-
-# Initialize the model with tool calling capabilities
-model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
-
-# Create the chain
-chain = prompt | model
-
-# Example query
-# query = "What is the weather in London?"
-# response = chain.invoke({"query": query})
-# print(response.tool_calls)
 ```
 
 ----------------------------------------
@@ -9315,15 +9266,51 @@ prompt = ChatPromptTemplate.from_messages([
 
 ----------------------------------------
 
-TITLE: Trace without setting environment variables
-DESCRIPTION: A guide on how to enable LangSmith tracing without explicitly setting environment variables, potentially simplifying setup in certain deployment scenarios.
+TITLE: Use Few-Shot Prompting with Tool Calling
+DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://docs.smith.langchain.com/how_to_guides/tracing/trace_with_langchain/
+SOURCE: https://python.langchain.com/docs/how_to/MultiQueryRetriever/
 
-LANGUAGE: APIDOC
+LANGUAGE: python
 CODE:
 ```
-/observability/how_to_guides/trace_without_env_vars
+# Example of few-shot prompting with tool calling:
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_openai import ChatOpenAI
+from langchain_core.utils.function_calling import convert_to_openai_tool
+
+# Define a tool
+def get_weather(city: str) -> str:
+    """Get the weather in a given city."""
+    return f"The weather in {city} is sunny."
+
+# Convert the tool to a format compatible with OpenAI's function calling
+weather_tool = convert_to_openai_tool(get_weather)
+
+# Create a prompt with few-shot examples
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    # Few-shot example 1
+    HumanMessage("What's the weather like in San Francisco?"),
+    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
+    # Few-shot example 2 (optional)
+    # HumanMessage("Tell me about Paris."),
+    # AIMessage("", tool_calls=[...])
+    # The actual user query
+    ("human", "{query}")
+])
+
+# Initialize the model with tool calling capabilities
+model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
+
+# Create the chain
+chain = prompt | model
+
+# Example query
+# query = "What is the weather in London?"
+# response = chain.invoke({"query": query})
+# print(response.tool_calls)
 ```
 
 ----------------------------------------
@@ -9373,6 +9360,19 @@ chain = prompt | model
 # query = "What is the weather in London?"
 # response = chain.invoke({"query": query})
 # print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: Trace without setting environment variables
+DESCRIPTION: A guide on how to enable LangSmith tracing without explicitly setting environment variables, potentially simplifying setup in certain deployment scenarios.
+
+SOURCE: https://docs.smith.langchain.com/how_to_guides/tracing/trace_with_langchain/
+
+LANGUAGE: APIDOC
+CODE:
+```
+/observability/how_to_guides/trace_without_env_vars
 ```
 
 ----------------------------------------
@@ -9630,21 +9630,6 @@ CODE:
 
 ----------------------------------------
 
-TITLE: LangChain How-to Guides
-DESCRIPTION: Guides on performing specific tasks with LangChain, including trimming messages and creating/querying vector stores.
-
-SOURCE: https://python.langchain.com/docs/how_to/sql_prompting/
-
-LANGUAGE: python
-CODE:
-```
-# How-to guide links:
-# Trim messages: /docs/how_to/trim_messages/
-# Create and query vector stores: /docs/how_to/vectorstores/
-```
-
-----------------------------------------
-
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -9694,10 +9679,62 @@ chain = prompt | model
 
 ----------------------------------------
 
+TITLE: LangChain How-to Guides
+DESCRIPTION: Guides on performing specific tasks with LangChain, including trimming messages and creating/querying vector stores.
+
+SOURCE: https://python.langchain.com/docs/how_to/sql_prompting/
+
+LANGUAGE: python
+CODE:
+```
+# How-to guide links:
+# Trim messages: /docs/how_to/trim_messages/
+# Create and query vector stores: /docs/how_to/vectorstores/
+```
+
+----------------------------------------
+
 TITLE: LangChain Tool Calling - Few-Shot Prompting
 DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
 
 SOURCE: https://python.langchain.com/docs/how_to/summarize_refine/
+
+LANGUAGE: python
+CODE:
+```
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+@tool
+def get_weather(city: str) -> str:
+    """Get the weather for a city."""
+    return f"The weather in {city} is sunny."
+
+@tool
+def get_time(city: str) -> str:
+    """Get the current time for a city."""
+    return f"The time in {city} is 10:00 AM."
+
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
+tools = [get_weather, get_time]
+
+# Few-shot examples embedded in the prompt
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    ("human", "What is the weather in Paris?"),
+    ("assistant", "{\"tool\": \"get_weather\", \"tool_input\": {\"city\": \"Paris\"}}"),
+    ("human", "What time is it in Tokyo?"),
+    ("assistant", "{\"tool\": \"get_time\", \"tool_input\": {\"city
+```
+
+----------------------------------------
+
+TITLE: LangChain Tool Calling - Few-Shot Prompting
+DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
+
+SOURCE: https://python.langchain.com/docs/how_to/query_constructing_filters/
 
 LANGUAGE: python
 CODE:
@@ -9760,43 +9797,6 @@ print(
 
 ----------------------------------------
 
-TITLE: LangChain Tool Calling - Few-Shot Prompting
-DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
-
-SOURCE: https://python.langchain.com/docs/how_to/query_constructing_filters/
-
-LANGUAGE: python
-CODE:
-```
-from langchain_core.tools import tool
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-
-@tool
-def get_weather(city: str) -> str:
-    """Get the weather for a city."""
-    return f"The weather in {city} is sunny."
-
-@tool
-def get_time(city: str) -> str:
-    """Get the current time for a city."""
-    return f"The time in {city} is 10:00 AM."
-
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
-tools = [get_weather, get_time]
-
-# Few-shot examples embedded in the prompt
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant. Use the available tools."),
-    ("human", "What is the weather in Paris?"),
-    ("assistant", "{\"tool\": \"get_weather\", \"tool_input\": {\"city\": \"Paris\"}}"),
-    ("human", "What time is it in Tokyo?"),
-    ("assistant", "{\"tool\": \"get_time\", \"tool_input\": {\"city
-```
-
-----------------------------------------
-
 TITLE: Python Langchain LLM Chatbot Example
 DESCRIPTION: Provides an example of building a simple chatbot using Langchain LLMs in Python. This snippet demonstrates a conversational flow where the LLM responds to user input. Ensure 'langchain' and 'openai' are installed.
 
@@ -9824,38 +9824,6 @@ while True:
         break
     response = conversation.invoke(user_input)
     print(f"Chatbot: {response['response']}")
-```
-
-----------------------------------------
-
-TITLE: Example Selectors
-DESCRIPTION: Demonstrates various strategies for selecting examples, including using LangSmith datasets, selecting by length, maximal marginal relevance (MMR), n-gram overlap, and similarity.
-
-SOURCE: https://python.langchain.com/docs/how_to/query_multiple_queries/
-
-LANGUAGE: python
-CODE:
-```
-from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
-from langchain_core.example_selectors import LengthBasedExampleSelector
-
-# Example for selecting examples by length
-# example_selector = LengthBasedExampleSelector(
-#     examples=my_examples, 
-#     example_prompt=example_prompt, 
-#     max_length=100
-# )
-
-# Example for selecting examples by similarity
-# example_selector = SemanticSimilarityExampleSelector(
-#     vectorstore=Chroma.from_documents(my_examples, OpenAIEmbeddings()),
-#     k=2,
-#     example_prompt=example_prompt,
-#     input_keys=["input"],
-# )
-
 ```
 
 ----------------------------------------
@@ -9957,6 +9925,38 @@ CODE:
 
 # How to use prompting alone (no tool calling) to do extraction
 # /docs/how_to/extraction_parse/
+```
+
+----------------------------------------
+
+TITLE: Example Selectors
+DESCRIPTION: Demonstrates various strategies for selecting examples, including using LangSmith datasets, selecting by length, maximal marginal relevance (MMR), n-gram overlap, and similarity.
+
+SOURCE: https://python.langchain.com/docs/how_to/query_multiple_queries/
+
+LANGUAGE: python
+CODE:
+```
+from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+from langchain_core.example_selectors import LengthBasedExampleSelector
+
+# Example for selecting examples by length
+# example_selector = LengthBasedExampleSelector(
+#     examples=my_examples, 
+#     example_prompt=example_prompt, 
+#     max_length=100
+# )
+
+# Example for selecting examples by similarity
+# example_selector = SemanticSimilarityExampleSelector(
+#     vectorstore=Chroma.from_documents(my_examples, OpenAIEmbeddings()),
+#     k=2,
+#     example_prompt=example_prompt,
+#     input_keys=["input"],
+# )
+
 ```
 
 ----------------------------------------
@@ -10089,39 +10089,6 @@ agent_executor = AgentExecutor(agent=agent, tools=[get_current_weather])
 
 ----------------------------------------
 
-TITLE: LangChain How-to Guides
-DESCRIPTION: Details various how-to guides for LangChain, covering practical implementation aspects and common tasks.
-
-SOURCE: https://python.langchain.com/docs/concepts/tokens/
-
-LANGUAGE: APIDOC
-CODE:
-```
-How-to guides:
-- How to use tools in a chain
-- How to use a vectorstore as a retriever
-- How to add memory to chatbots
-- How to use example selectors
-- How to add a semantic layer over graph database
-- How to invoke runnables in parallel
-- How to stream chat model responses
-- How to add default invocation args to a Runnable
-- How to add retrieval to chatbots
-- How to use few shot examples in chat models
-- How to do tool/function calling
-- How to install LangChain packages
-- How to add examples to the prompt for query analysis
-- How to use few shot examples
-- How to run custom functions
-- How to use output parsers to parse an LLM response into structured format
-- How to handle cases where no queries are generated
-- How to route between sub-chains
-- How to return structured data from a model
-- How to summarize text through parallelization
-```
-
-----------------------------------------
-
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -10167,6 +10134,39 @@ chain = prompt | model
 # query = "What is the weather in London?"
 # response = chain.invoke({"query": query})
 # print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: LangChain How-to Guides
+DESCRIPTION: Details various how-to guides for LangChain, covering practical implementation aspects and common tasks.
+
+SOURCE: https://python.langchain.com/docs/concepts/tokens/
+
+LANGUAGE: APIDOC
+CODE:
+```
+How-to guides:
+- How to use tools in a chain
+- How to use a vectorstore as a retriever
+- How to add memory to chatbots
+- How to use example selectors
+- How to add a semantic layer over graph database
+- How to invoke runnables in parallel
+- How to stream chat model responses
+- How to add default invocation args to a Runnable
+- How to add retrieval to chatbots
+- How to use few shot examples in chat models
+- How to do tool/function calling
+- How to install LangChain packages
+- How to add examples to the prompt for query analysis
+- How to use few shot examples
+- How to run custom functions
+- How to use output parsers to parse an LLM response into structured format
+- How to handle cases where no queries are generated
+- How to route between sub-chains
+- How to return structured data from a model
+- How to summarize text through parallelization
 ```
 
 ----------------------------------------
@@ -10392,38 +10392,6 @@ from langchain_openai import ChatOpenAI
 
 ----------------------------------------
 
-TITLE: Example Selectors
-DESCRIPTION: Demonstrates various strategies for selecting examples, including using LangSmith datasets, selecting by length, maximal marginal relevance (MMR), n-gram overlap, and similarity.
-
-SOURCE: https://python.langchain.com/docs/how_to/contextual_compression/
-
-LANGUAGE: python
-CODE:
-```
-from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
-from langchain_core.example_selectors import LengthBasedExampleSelector
-
-# Example for selecting examples by length
-# example_selector = LengthBasedExampleSelector(
-#     examples=my_examples, 
-#     example_prompt=example_prompt, 
-#     max_length=100
-# )
-
-# Example for selecting examples by similarity
-# example_selector = SemanticSimilarityExampleSelector(
-#     vectorstore=Chroma.from_documents(my_examples, OpenAIEmbeddings()),
-#     k=2,
-#     example_prompt=example_prompt,
-#     input_keys=["input"],
-# )
-
-```
-
-----------------------------------------
-
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -10518,6 +10486,38 @@ chain = prompt | model
 # query = "What is the weather in London?"
 # response = chain.invoke({"query": query})
 # print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: Example Selectors
+DESCRIPTION: Demonstrates various strategies for selecting examples, including using LangSmith datasets, selecting by length, maximal marginal relevance (MMR), n-gram overlap, and similarity.
+
+SOURCE: https://python.langchain.com/docs/how_to/contextual_compression/
+
+LANGUAGE: python
+CODE:
+```
+from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+from langchain_core.example_selectors import LengthBasedExampleSelector
+
+# Example for selecting examples by length
+# example_selector = LengthBasedExampleSelector(
+#     examples=my_examples, 
+#     example_prompt=example_prompt, 
+#     max_length=100
+# )
+
+# Example for selecting examples by similarity
+# example_selector = SemanticSimilarityExampleSelector(
+#     vectorstore=Chroma.from_documents(my_examples, OpenAIEmbeddings()),
+#     k=2,
+#     example_prompt=example_prompt,
+#     input_keys=["input"],
+# )
+
 ```
 
 ----------------------------------------
@@ -10620,29 +10620,6 @@ chain = prompt | model
 
 ----------------------------------------
 
-TITLE: LangChain Tutorials
-DESCRIPTION: A collection of tutorials demonstrating how to build various LLM applications with LangChain, from simple Q&A to complex agents.
-
-SOURCE: https://python.langchain.com/docs/how_to/document_loader_json/
-
-LANGUAGE: python
-CODE:
-```
-Build a Question Answering application over a Graph Database: /docs/tutorials/graph/
-Build a simple LLM application with chat models and prompt templates: /docs/tutorials/llm_chain/
-Build a Chatbot: /docs/tutorials/chatbot/
-Build a Retrieval Augmented Generation (RAG) App: Part 2: /docs/tutorials/qa_chat_history/
-Build an Extraction Chain: /docs/tutorials/extraction/
-Build an Agent: /docs/tutorials/agents/
-Tagging: /docs/tutorials/classification/
-Build a Retrieval Augmented Generation (RAG) App: Part 1: /docs/tutorials/rag/
-Build a semantic search engine: /docs/tutorials/retrievers/
-Build a Question/Answering system over SQL data: /docs/tutorials/sql_qa/
-Summarize Text: /docs/tutorials/summarization/
-```
-
-----------------------------------------
-
 TITLE: How to Build an Agent
 DESCRIPTION: This guide provides instructions on building agents in LangChain. It covers the core concepts of agents, including tools, language models, and agent executors, and how to combine them to create intelligent agents that can reason and act.
 
@@ -10668,6 +10645,29 @@ from langchain_core.prompts import PromptTemplate
 # agent_executor = AgentExecutor(agent=agent, tools=tools)
 # agent_executor.invoke({"input": "What is the weather today?"})
 
+```
+
+----------------------------------------
+
+TITLE: LangChain Tutorials
+DESCRIPTION: A collection of tutorials demonstrating how to build various LLM applications with LangChain, from simple Q&A to complex agents.
+
+SOURCE: https://python.langchain.com/docs/how_to/document_loader_json/
+
+LANGUAGE: python
+CODE:
+```
+Build a Question Answering application over a Graph Database: /docs/tutorials/graph/
+Build a simple LLM application with chat models and prompt templates: /docs/tutorials/llm_chain/
+Build a Chatbot: /docs/tutorials/chatbot/
+Build a Retrieval Augmented Generation (RAG) App: Part 2: /docs/tutorials/qa_chat_history/
+Build an Extraction Chain: /docs/tutorials/extraction/
+Build an Agent: /docs/tutorials/agents/
+Tagging: /docs/tutorials/classification/
+Build a Retrieval Augmented Generation (RAG) App: Part 1: /docs/tutorials/rag/
+Build a semantic search engine: /docs/tutorials/retrievers/
+Build a Question/Answering system over SQL data: /docs/tutorials/sql_qa/
+Summarize Text: /docs/tutorials/summarization/
 ```
 
 ----------------------------------------
@@ -10741,6 +10741,43 @@ chain = prompt | model
 
 ----------------------------------------
 
+TITLE: LangChain Tool Calling - Few-Shot Prompting
+DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
+
+SOURCE: https://python.langchain.com/docs/how_to/document_loader_office_file/
+
+LANGUAGE: python
+CODE:
+```
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+@tool
+def get_weather(city: str) -> str:
+    """Get the weather for a city."""
+    return f"The weather in {city} is sunny."
+
+@tool
+def get_time(city: str) -> str:
+    """Get the current time for a city."""
+    return f"The time in {city} is 10:00 AM."
+
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
+tools = [get_weather, get_time]
+
+# Few-shot examples embedded in the prompt
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    ("human", "What is the weather in Paris?"),
+    ("assistant", "{\"tool\": \"get_weather\", \"tool_input\": {\"city\": \"Paris\"}}"),
+    ("human", "What time is it in Tokyo?"),
+    ("assistant", "{\"tool\": \"get_time\", \"tool_input\": {\"city
+```
+
+----------------------------------------
+
 TITLE: LangChain How-to Guides
 DESCRIPTION: Practical guides on implementing specific functionalities within LangChain, such as using tools, memory, and output parsers.
 
@@ -10805,43 +10842,6 @@ CODE:
 
 # How to return structured data from a model
 # ... (implementation details)
-```
-
-----------------------------------------
-
-TITLE: LangChain Tool Calling - Few-Shot Prompting
-DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
-
-SOURCE: https://python.langchain.com/docs/how_to/document_loader_office_file/
-
-LANGUAGE: python
-CODE:
-```
-from langchain_core.tools import tool
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-
-@tool
-def get_weather(city: str) -> str:
-    """Get the weather for a city."""
-    return f"The weather in {city} is sunny."
-
-@tool
-def get_time(city: str) -> str:
-    """Get the current time for a city."""
-    return f"The time in {city} is 10:00 AM."
-
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
-tools = [get_weather, get_time]
-
-# Few-shot examples embedded in the prompt
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant. Use the available tools."),
-    ("human", "What is the weather in Paris?"),
-    ("assistant", "{\"tool\": \"get_weather\", \"tool_input\": {\"city\": \"Paris\"}}"),
-    ("human", "What time is it in Tokyo?"),
-    ("assistant", "{\"tool\": \"get_time\", \"tool_input\": {\"city
 ```
 
 ----------------------------------------
@@ -11102,7 +11102,7 @@ print("Agent setup complete. Ready for invocation.")
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/summarize_map_reduce/
+SOURCE: https://python.langchain.com/docs/how_to/streaming_llm/
 
 LANGUAGE: python
 CODE:
@@ -11151,7 +11151,7 @@ chain = prompt | model
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/streaming_llm/
+SOURCE: https://python.langchain.com/docs/how_to/summarize_map_reduce/
 
 LANGUAGE: python
 CODE:
@@ -11739,6 +11739,30 @@ documents = loader.load()
 
 ----------------------------------------
 
+TITLE: Setup and Database Connection
+DESCRIPTION: Installs necessary packages, sets up environment variables (optional for LangSmith), and connects to a SQLite Chinook database using SQLDatabase. It then prints the dialect, usable table names, and a sample query result.
+
+SOURCE: https://python.langchain.com/docs/how_to/sql_prompting/
+
+LANGUAGE: python
+CODE:
+```
+%pip install --upgrade --quiet  langchain langchain-community langchain-experimental langchain-openai
+
+# Uncomment the below to use LangSmith. Not required.
+# import getpass
+# import os
+# os.environ["LANGSMITH_API_KEY"] = getpass.getpass()
+# os.environ["LANGSMITH_TRACING"] = "true"
+
+from langchain_community.utilities import SQLDatabasedb = SQLDatabase.from_uri("sqlite:///Chinook.db", sample_rows_in_table_info=3)
+print(db.dialect)
+print(db.get_usable_table_names())
+print(db.run("SELECT * FROM Artist LIMIT 10;"))
+```
+
+----------------------------------------
+
 TITLE: Dynamic Few-Shot Example Selection with FAISS
 DESCRIPTION: Demonstrates how to use SemanticSimilarityExampleSelector with FAISS and OpenAIEmbeddings to dynamically select relevant examples for SQL query generation. This helps in providing contextually appropriate few-shot examples to the language model.
 
@@ -11769,30 +11793,6 @@ example_selector = SemanticSimilarityExampleSelector.from_examples(
 # Example usage of the selector:
 # selected_examples = example_selector.select_examples({"input": "how many artists are there?"})
 # print(selected_examples)
-```
-
-----------------------------------------
-
-TITLE: Setup and Database Connection
-DESCRIPTION: Installs necessary packages, sets up environment variables (optional for LangSmith), and connects to a SQLite Chinook database using SQLDatabase. It then prints the dialect, usable table names, and a sample query result.
-
-SOURCE: https://python.langchain.com/docs/how_to/sql_prompting/
-
-LANGUAGE: python
-CODE:
-```
-%pip install --upgrade --quiet  langchain langchain-community langchain-experimental langchain-openai
-
-# Uncomment the below to use LangSmith. Not required.
-# import getpass
-# import os
-# os.environ["LANGSMITH_API_KEY"] = getpass.getpass()
-# os.environ["LANGSMITH_TRACING"] = "true"
-
-from langchain_community.utilities import SQLDatabasedb = SQLDatabase.from_uri("sqlite:///Chinook.db", sample_rows_in_table_info=3)
-print(db.dialect)
-print(db.get_usable_table_names())
-print(db.run("SELECT * FROM Artist LIMIT 10;"))
 ```
 
 ----------------------------------------
@@ -12569,6 +12569,19 @@ How to return structured data from a model
 
 ----------------------------------------
 
+TITLE: Invoke Chain with Examples
+DESCRIPTION: Shows how to invoke a LangChain chain that has been configured with few-shot examples. The input is processed by the chain, leveraging the provided examples for better context and output generation.
+
+SOURCE: https://python.langchain.com/docs/how_to/query_few_shot/
+
+LANGUAGE: python
+CODE:
+```
+query_analyzer_with_examples.invoke("what's the difference between web voyager and reflection agents? do both use langgraph?")
+```
+
+----------------------------------------
+
 TITLE: LangChain How-to Guides
 DESCRIPTION: Guides on specific tasks within LangChain, including how to trim messages and how to create and query vector stores.
 
@@ -12633,68 +12646,6 @@ from langchain_community.chat_models import ChatTogetherAI
 
 ----------------------------------------
 
-TITLE: Invoke Chain with Examples
-DESCRIPTION: Shows how to invoke a LangChain chain that has been configured with few-shot examples. The input is processed by the chain, leveraging the provided examples for better context and output generation.
-
-SOURCE: https://python.langchain.com/docs/how_to/query_few_shot/
-
-LANGUAGE: python
-CODE:
-```
-query_analyzer_with_examples.invoke("what's the difference between web voyager and reflection agents? do both use langgraph?")
-```
-
-----------------------------------------
-
-TITLE: Use Few-Shot Prompting with Tool Calling
-DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
-
-SOURCE: https://python.langchain.com/docs/how_to/chat_model_caching/
-
-LANGUAGE: python
-CODE:
-```
-# Example of few-shot prompting with tool calling:
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langchain_openai import ChatOpenAI
-from langchain_core.utils.function_calling import convert_to_openai_tool
-
-# Define a tool
-def get_weather(city: str) -> str:
-    """Get the weather in a given city."""
-    return f"The weather in {city} is sunny."
-
-# Convert the tool to a format compatible with OpenAI's function calling
-weather_tool = convert_to_openai_tool(get_weather)
-
-# Create a prompt with few-shot examples
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant. Use the available tools."),
-    # Few-shot example 1
-    HumanMessage("What's the weather like in San Francisco?"),
-    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
-    # Few-shot example 2 (optional)
-    # HumanMessage("Tell me about Paris."),
-    # AIMessage("", tool_calls=[...])
-    # The actual user query
-    ("human", "{query}")
-])
-
-# Initialize the model with tool calling capabilities
-model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
-
-# Create the chain
-chain = prompt | model
-
-# Example query
-# query = "What is the weather in London?"
-# response = chain.invoke({"query": query})
-# print(response.tool_calls)
-```
-
-----------------------------------------
-
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
@@ -12747,7 +12698,7 @@ chain = prompt | model
 TITLE: Use Few-Shot Prompting with Tool Calling
 DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/chat_token_usage_tracking/
+SOURCE: https://python.langchain.com/docs/how_to/chat_model_caching/
 
 LANGUAGE: python
 CODE:
@@ -12830,26 +12781,70 @@ prompt = ChatPromptTemplate.from_messages([
 
 ----------------------------------------
 
-TITLE: LangChain Tutorials Overview
-DESCRIPTION: This section lists various tutorials available for LangChain, covering a wide range of applications from simple LLM interactions to complex agents and RAG systems.
+TITLE: Use Few-Shot Prompting with Tool Calling
+DESCRIPTION: Demonstrates how to use few-shot examples within prompts to guide an LLM in correctly calling tools. This improves the accuracy and reliability of tool usage.
 
-SOURCE: https://python.langchain.com/docs/how_to/qa_sources/
+SOURCE: https://python.langchain.com/docs/how_to/chat_token_usage_tracking/
 
-LANGUAGE: markdown
+LANGUAGE: python
 CODE:
 ```
-*   [Build a Question Answering application over a Graph Database](/docs/tutorials/graph/)
-*   [Tutorials](/docs/tutorials/)
-*   [Build a simple LLM application with chat models and prompt templates](/docs/tutorials/llm_chain/)
-*   [Build a Chatbot](/docs/tutorials/chatbot/)
-*   [Build a Retrieval Augmented Generation (RAG) App: Part 2](/docs/tutorials/qa_chat_history/)
-*   [Build an Extraction Chain](/docs/tutorials/extraction/)
-*   [Build an Agent](/docs/tutorials/agents/)
-*   [Tagging](/docs/tutorials/classification/)
-*   [Build a Retrieval Augmented Generation (RAG) App: Part 1](/docs/tutorials/rag/)
-*   [Build a semantic search engine](/docs/tutorials/retrievers/)
-*   [Build a Question/Answering system over SQL data](/docs/tutorials/sql_qa/)
-*   [Summarize Text](/docs/tutorials/summarization/)
+# Example of few-shot prompting with tool calling:
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_openai import ChatOpenAI
+from langchain_core.utils.function_calling import convert_to_openai_tool
+
+# Define a tool
+def get_weather(city: str) -> str:
+    """Get the weather in a given city."""
+    return f"The weather in {city} is sunny."
+
+# Convert the tool to a format compatible with OpenAI's function calling
+weather_tool = convert_to_openai_tool(get_weather)
+
+# Create a prompt with few-shot examples
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    # Few-shot example 1
+    HumanMessage("What's the weather like in San Francisco?"),
+    AIMessage("", tool_calls=[{"name": "get_weather", "arguments": {"city": "San Francisco"}, "id": "call_abc"}])
+    # Few-shot example 2 (optional)
+    # HumanMessage("Tell me about Paris."),
+    # AIMessage("", tool_calls=[...])
+    # The actual user query
+    ("human", "{query}")
+])
+
+# Initialize the model with tool calling capabilities
+model = ChatOpenAI(model="gpt-4", tools=[weather_tool])
+
+# Create the chain
+chain = prompt | model
+
+# Example query
+# query = "What is the weather in London?"
+# response = chain.invoke({"query": query})
+# print(response.tool_calls)
+```
+
+----------------------------------------
+
+TITLE: Using Toolkits
+DESCRIPTION: Provides guidance on how to leverage pre-built toolkits within Langchain for various tasks. Toolkits bundle related tools and chains to simplify complex workflows.
+
+SOURCE: https://python.langchain.com/docs/how_to/example_selectors_similarity/
+
+LANGUAGE: python
+CODE:
+```
+from langchain.agents import load_tools
+from langchain.llms import OpenAI
+
+llm = OpenAI(temperature=0)
+# Load tools for a specific toolkit, e.g., 'python-repl'
+tools = load_tools(["python-repl"], llm=llm)
+# Further steps to use these tools with an agent...
 ```
 
 ----------------------------------------
@@ -12898,4 +12893,54 @@ CODE:
 ```
 # Placeholder for code examples for selecting examples with Langchain.
 # Actual code examples would be placed here.
+```
+
+----------------------------------------
+
+TITLE: LangChain Google Generative AI Setup
+DESCRIPTION: Installs the LangChain Google Generative AI integration package, enabling the use of Google's Gemini models within LangChain applications.
+
+SOURCE: https://python.langchain.com/docs/how_to/sql_csv/
+
+LANGUAGE: python
+CODE:
+```
+pip install -qU "langchain[google-genai]"
+```
+
+----------------------------------------
+
+TITLE: LangChain Tool Calling - Few-Shot Prompting
+DESCRIPTION: Demonstrates how to use few-shot examples within the prompt to guide the LLM on how and when to use tools effectively. This improves the accuracy and reliability of tool calls.
+
+SOURCE: https://python.langchain.com/docs/how_to/multimodal_inputs/
+
+LANGUAGE: python
+CODE:
+```
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+@tool
+def get_weather(city: str) -> str:
+    """Get the weather for a city."""
+    return f"The weather in {city} is sunny."
+
+@tool
+def get_time(city: str) -> str:
+    """Get the current time for a city."""
+    return f"The time in {city} is 10:00 AM."
+
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
+tools = [get_weather, get_time]
+
+# Few-shot examples embedded in the prompt
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant. Use the available tools."),
+    ("human", "What is the weather in Paris?"),
+    ("assistant", "{\"tool\": \"get_weather\", \"tool_input\": {\"city\": \"Paris\"}}"),
+    ("human", "What time is it in Tokyo?"),
+    ("assistant", "{\"tool\": \"get_time\", \"tool_input\": {\"city
 ```
